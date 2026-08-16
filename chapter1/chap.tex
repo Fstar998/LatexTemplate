@@ -1,0 +1,199 @@
+\ifx\allfiles\undefined
+\input{../config/config}
+\begin{document}
+% \input{../config/cover} 
+\else
+\fi
+%  ############################ 正文部分
+\chapter{Latex入门}
+\section{绪论}
+
+整数\footnote{脚注}称为\emph{勾股数}
+
+\begin{quote}
+\zihao{-5}\kaishu 引用的内容
+\end{quote}
+的说法
+
+\begin{equation}
+	f(x)=x^2+x^\circ 
+\end{equation}
+% \includegraphics[width=0.3cmm]{xiantu.pdf}插入外部图片
+
+
+
+
+	\chapter{行列式}
+	\section{$n$阶行列式}
+$
+\left \{ \begin{matrix}
+	1 &6   & 9 \\
+	7 &90 & f(x)  \\
+	9 & \psi(x) &g(x) \\
+\end{matrix} \right | 
+$
+$ \begin{vmatrix}
+	1&2\\
+	3&4\\
+\end{vmatrix} $
+
+
+
+\begin{definition}
+	defhdfgh
+\end{definition}
+\begin{lemma}
+	内容...
+\end{lemma}
+\begin{theorem}
+	内容...
+\end{theorem}
+\begin{proof}
+\lipsum[3]
+\end{proof}
+\begin{example}
+	内容...
+\end{example}
+\section{曲面积分}
+\setcounter{example}{0}
+\begin{example}
+	内容...
+\end{example}
+\begin{remark}
+	内容...
+\end{remark}
+\begin{formal}
+\lipsum[7]
+\end{formal}
+\setlength\FrameSep{0.2em}
+\begin{framed}
+
+\begin{lstlisting}
+	package generic;
+	
+	public interface Plant<T> 
+	{
+		T getName(T name) ;
+	}
+	
+	public class Test implements Plant<String>
+	{
+		public String getName(String name)
+		{
+			return name;
+		}
+		public static void main(String[] args)
+		{
+			Test t1 = new Test();
+			String s1 = t1.getName("Fang");
+			System.out.println(s1);
+			
+			Plant<String> t2 = new Test();
+			String s2 = t2.getName("Black");
+			System.out.println(s2);
+		}
+	}
+\end{lstlisting}
+
+
+\end{framed}
+\begin{minted}[linenos]{python}
+    def hello():
+        print("Hello, world!")
+\end{minted}
+
+\paragraph{拼接pdf文档}
+
+%\usepackage{pdfpages} 宏包
+%\includepdfmerge{m1.pdf,1-2}% 页码从1到2
+%\includepdfmerge{m2.pdf,1-2}
+%\includepdfmerge{m3.pdf,1}
+	
+
+
+%  结束正文
+\newpage 
+\section{组织文本}
+\subsection{文字与符号}
+\begin{table}[h]
+\begin{center}
+\caption{LaTeX中的重音命令}
+\begin{tabular}{clcclcclccl}
+\bottomrule
+\textbf{\`o}&$\backslash $`o&\qquad \qquad \qquad &\textbf{\'o}&$\backslash$'o&\qquad \qquad \qquad &\textbf{\^o}&$\backslash$\^o&\qquad \qquad \qquad &\textbf{\"o}&$\backslash "$o  \\
+\textbf{\~o}&$\backslash \sim$o&\qquad &\textbf{\=o}&$\backslash$=o&\qquad &\textbf{\.o}&$\backslash$.o&\qquad &\textbf{\u{o}}&$\backslash$u\{o\}\\
+\textbf{\v{o}}&$\backslash$v\{o\}&\qquad &\textbf{\H{o}}&$\backslash$H\{o\}&\qquad &\textbf{\t{oo}}&$\backslash$t\{oo\}&\qquad &\textbf{\r{o}}&$\backslash$r\{o\}\\
+\textbf{\c{o}}&$\backslash$c\{o\}&\qquad &\textbf{\d{o}}&$\backslash$d\{o\}&\qquad &\textbf{\b{o}}&$\backslash$b\{o\}&\qquad & & \\
+\toprule
+\end{tabular}
+\end{center}
+\end{table}
+\noindent 
+取消英文字母的连字现象：
+\begin{itemize}
+\item 使用空的分组(即\{\})
+\item 借用$\backslash /$命令
+\end{itemize}
+\noindent 
+连字符、数字范围和破折号:
+\begin{itemize}
+\item 连字符hyphen：-，如X-ray.
+\item 数字范围\footnote{按中文写作习惯，常用$\sim $,使用数学模式：\$$\backslash$sim\$}en dash ：- -，如1--3.
+\item 破折号em dash：- - -，如A punctuation dash---like this.
+\end{itemize}
+\noindent 
+省略号：
+\begin{itemize}
+\item $\backslash$ldots
+\item $\backslash$dots
+\end{itemize}
+空格和换行：
+\begin{itemize}
+\item 幻影命令$\backslash$phantom\{参数\}：产生与参数内容一样大小的空盒子，没有内容，常用于完成特殊的占位和对齐效果.
+\item 水平幻影命令$\backslash$hphantom\{参数\}
+\item 垂直幻影命令$\backslash$vphantom\{参数\}
+\item $\backslash$$\backslash[2cm]$：其后可带一个可选的长度参数，表示换行后增加的额外垂直间距
+\end{itemize}
+字体
+\begin{itemize}
+\item 字号
+\item 字体编码
+\item 字体族
+\begin{enumerate}
+\item 罗马字体族\textbackslash textrm\{<文字>\}\& \textbackslash rmfamily
+\item 无衬线字体族\textbackslash textsf\{<文字>\}\& \textbackslash sffamily
+\item 打印机字体族\textbackslash texttt\{<文字>\}\& \textbackslash ttfamily
+\item ctex宏包默认配置了四种字体族：\textbackslash songti、\textbackslash kaishu 、\textbackslash fangsong、 \textbackslash heiti
+\end{enumerate}
+\item 字体形状
+\begin{enumerate}
+	\item 直立形状\textbackslash textup\{<文字>\}\& \textbackslash upshade
+	\item 意大利形状\textbackslash textit\{<文字>\}\& \textbackslash itshade
+	\item 倾斜形状\textbackslash textsl\{<文字>\}\& \textbackslash slshade
+	\item 小型大写形状\textbackslash textsc\{<文字>\}\& \textbackslash scshade
+\end{enumerate}
+\item 字体系列
+\begin{enumerate}
+	\item 中等\textbackslash textmd\{<文字>\}\& \textbackslash mdseries
+	\item 加宽加粗\textbackslash textbf\{<文字>\}\& \textbackslash bfseries
+\end{enumerate}
+\end{itemize}
+\subsection{段落与文本环境}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\ifx\allfiles\undefined
+\end{document}
+\fi

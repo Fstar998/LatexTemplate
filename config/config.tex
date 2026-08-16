@@ -1,0 +1,153 @@
+\documentclass[12pt, a4paper,oneside, UTF8]{ctexbook}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}   % 数学公式
+\usepackage{booktabs} % 制作三线表
+\usepackage{ntheorem}   % 定理环境
+%\usepackage{amsthm}    % 定理环境
+\usepackage{amssymb}   % 更多公式符号
+\usepackage{graphicx}  % 插图
+\usepackage{mathrsfs}  % 数学字体
+\usepackage{enumitem}  % 列表
+\usepackage{geometry}  % 页面调整
+\usepackage{lipsum}    % 自动生成一段文本
+\usepackage[strict]{changepage} % 提供一个 adjustwidth 环境
+\usepackage{framed} % 实现方框效果
+\usepackage{listings}% 代码环境
+\usepackage{tikz}
+\usepackage{unicode-math}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\usepackage{minted}% 代码环境
+\usemintedstyle{xcode}
+\graphicspath{ {flg/},{../flg/}, {config/}, {../config/} }  % 配置图形文件检索目录
+\linespread{1.5} % 行高
+
+% 页码设置
+\geometry{top=25.4mm,bottom=25.4mm,left=20mm,right=20mm,headheight=2.17cm,headsep=4mm,footskip=12mm}
+
+% 设置列表环境的上下间距
+%\setenumerate[1]{itemsep=5pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+%\setitemize[1]{itemsep=5pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+%\setdescription{itemsep=5pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+% 自定义颜色
+\definecolor{formalshade}{rgb}{0.95,0.95,1} % 文本框颜色
+\definecolor{codeframeshade}{RGB}{231,239,250}
+% 设置章形式
+\usepackage{titlesec, titletoc}
+\linespread{1.2}                
+\usepackage{fancyhdr}
+\fancyhf{}
+\renewcommand{\headrule}{\color{black}\hrule width\textwidth}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1pt}
+\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}\renewcommand{\headrule}{}}
+
+\fancyhead[c]{\color{red}\kaishu\rightmark}
+\fancyfoot[c]{\color{red}\small\thepage}
+
+\titleformat{\chapter}[display]{\Large}
+{\color{black}\filleft
+	\parbox{1cm}{\vbox to 1.5cm{\vfill\hbox to 4cm{\hfill\Huge \bfseries \color{black}{Chapter} \thechapter \hfill}}}}
+{1ex}
+{\color{black} \titlerule[2pt]\large\bfseries \filright \vspace*{1em}}
+[\vspace*{1em} {\titlerule[2pt]}]
+
+% 在导言区进行代码样式设置
+\lstset{
+	language=Java, % 设置语言
+	basicstyle=\ttfamily, % 设置字体族
+	breaklines=true, % 自动换行
+	keywordstyle=\bfseries\color{NavyBlue}, % 设置关键字为粗体，颜色为 NavyBlue
+	morekeywords={}, % 设置更多的关键字，用逗号分隔
+	emph={self}, % 指定强调词，如果有多个，用逗号隔开
+	emphstyle=\bfseries\color{Rhodamine}, % 强调词样式设置
+	commentstyle=\itshape\color{black!50!white}, % 设置注释样式，斜体，浅灰色
+	stringstyle=\bfseries\color{PineGreen!90!black}, % 设置字符串样式
+	columns=flexible,
+	numbers=left, % 显示行号在左边
+	numbersep=1em, % 设置行号的具体位置
+	numberstyle=\footnotesize, % 缩小行号
+	stepnumber=5,% 行号设置
+	% frame=single, % 边框
+	rulecolor=\color{gray!90},      % 代码框颜色
+	aboveskip=.25em, 			% 代码块边框
+	framextopmargin=0pt, framexbottommargin=0pt,
+	framesep=2em, % 设置代码与边框的距离
+	xleftmargin=1cm,
+	xrightmargin=1cm,
+	tabsize=3
+}
+% 定理环境
+%设置定理环境的样式：plain(默认样式)、difinition、remark
+%\theoremstyle{definition}
+\theorembodyfont{\kaishu}
+%\newtheorem{环境名}{标题}[排序单位]
+\newtheorem{definition}{\indent 定义}[section]
+\newtheorem{lemma}{\indent 引理}[section]    
+\newtheorem{theorem}{\indent 定理}[section]
+\newtheorem{corollary}{\indent 推论}[section]
+% 引理 定理 推论 准则 共用一个编号计数
+%\newtheorem{thm}[lemma]{\indent 定理}
+%\newtheorem{corollary}[lemma]{\indent 推论}
+%\newtheorem{criterion}[lemma]{\indent 准则}
+%\newtheorem{proposition}{\indent 命题}[section]
+
+\newtheorem{example}{\indent \color{SeaGreen}{例}} % 绿色文字的例 ， 不需要可更改 \color{SeaGreen}{} 
+\newtheorem*{remark}{\indent 注}
+
+% 定义中文的 证明 和 解 的环境：
+\newenvironment{proof}{\par\textbf{证明}\;}{
+	\vspace{-2.5em}
+	\begin{flushright}
+		$\square$
+	\end{flushright}\par}
+\newenvironment{solution}{\par{\textbf{解}}\;}{\par}
+
+
+% ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 以下是自定义的命令  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+% 用于调整表格的高度  使用 \hline\xrowht{25pt}
+\newcommand{\xrowht}[2][0]{\addstackgap[.5\dimexpr#2\relax]{\vphantom{#1}}}
+
+% 表格环境内长内容换行
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+% 使用\linespread{1.5} 之后 cases 环境的行高也会改变，重新定义一个 ca 环境可以自动控制 cases 环境行高
+\newenvironment{ca}[1][1]{\linespread{#1} \selectfont \begin{cases}}{\end{cases}}
+% 和上面一样
+\newenvironment{vx}[1][1]{\linespread{#1} \selectfont \begin{vmatrix}}{\end{vmatrix}}
+
+\def\d{\textup{d}} % 直立体 d 用于微分符号 dx
+\def\R{\mathbb{R}} % 实数域
+\newcommand{\bs}[1]{\boldsymbol{#1}}    % 加粗，常用于向量
+\newcommand{\ora}[1]{\overrightarrow{#1}} % 向量
+
+% 数学 平行 符号
+\newcommand{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}
+
+% 用于空行\myspace{1} 表示空一行 填 2 表示空两行  
+\newcommand{\myspace}[1]{\par\vspace{#1\baselineskip}}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}%\rule[水平高度]{长度}{粗细}
+
+
+% ------------------******-------------------
+% 注意行末需要把空格注释掉，不然画出来的方框会有空白竖线
+\newenvironment{formal}
+{%
+	\def\FrameCommand
+	{%
+		\hspace{1pt}%
+		{\color{blue}\vrule width 2pt}%
+		{\color{formalshade}\vrule width 4pt}%
+		\colorbox{formalshade}%
+	}%
+	\MakeFramed{\advance\hsize-\width\FrameRestore}%
+	\noindent\hspace{-4.55pt}% disable indenting first paragraph
+	\begin{adjustwidth}{}{7pt}%
+		\vspace{2pt}\vspace{2pt}%
+	}
+	{%
+		\vspace{2pt}\end{adjustwidth}\endMakeFramed%
+}
+
